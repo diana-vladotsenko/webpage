@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="et">
+<rel link = "stylesheet" href="style.css">
+<head>
+<meta charset = "utf-8">
+<title>Preparing for exam</title>
+</head>
+
+<h1>Kasutajakonto loomine</h1>
+<hr>
+<ul>
+	<li><a href = "/">Avalehele</a></li>
+	<li><a href="/signin">Logimine</a></li>
+</ul>
+<hr>
+
+<form method="POST">
+    <label for="firstNameInput">Sisesta nimi:</label>
+    <input type="text" id="firstNameInput" name="firstNameInput" placeholder="Nimi ...">
+</form>
+
+<form method="POST">
+    <label for="lastNameInput">Sisesta perekonnanimi:</label>
+    <input type="text" id="lastNameInput" name="lastNameInput" placeholder="Perekonnanimi ...">
+    <label for="birthDateInput">Sünnikuupaev:</label>
+    <input type="date" id="birthDateInput" name="birthDateInput" placeholder="Sunnikuupaev ...">
+    <label for="genderInput">Mees</label>
+    <input type="radio" id="genderInput1" name="genderInput" value="1" checked>
+    <label for="genderInput">Naine</label>
+    <input type="radio" id="genderInput2" name="genderInput" value="2" checked>
+    <label for = "emailInput">Email</label>
+    <input type = "email" id = "emailInput" name="emailInput" placeholder="Email..">
+    <label for = "passwordInput">Salasõna(min 8 marki)</label>
+    <input type = "password" id = "passwordInput" name="passwordInput" required>
+    <label for = "confirmPasswordInput">Korda salasõna</label>
+    <input type = "password" id = "confirmPasswordInput" name="confirmPasswordInput" required>
+
+    <input type ="submit" id="userSubmit" name="userSubmit" value="Loo Kasutajakonto">
+</form>
+<p></p>
+
+
+</body>
+</html>
