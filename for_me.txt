@@ -1,0 +1,79 @@
+//Eestifilmid
+app.get("/eestifilm",(req, res) => {
+	res.render("eestifilm");
+});
+
+app.get("/eestifilm/tegelased",(req, res) => {
+	//res.render("tegelased");
+	//andmebaasilugemine. Loon anmdbevaasi paringut
+	let sqlReq = "SELECT first_name,last_name,birth_date FROM person";
+	conn.query(sqlReq, (err,sqlRes)=> {
+		if (err) {
+			res.render("tegelased", {persons: {first_name:"Pole", last_name:"leidnud", birth_date: "viga."}});
+		} else {
+			//console.log(sqlRes);
+			res.render("tegelased", {persons: sqlRes});
+	}});
+});
+
+/* //addperson
+app.get("/eestifilm/lisa",(req, res) => {
+	res.render("addperson");
+});
+
+//filmitegelane lisamine
+app.post('/addperson', (req, res) => {
+    if (req.body.personSubmit) {
+        const personName = req.body.personName;
+        console.log(`Lisatud tegelane: ${personName}`);
+        res.redirect('/');
+    }
+});
+
+//filmi lisamine
+app.post('/filmid', (req, res) => {
+    if (req.body.filmSubmit) {
+        const filmTitle = req.body.filmTitle;
+        console.log(`Lisatud film: ${filmTitle}`);
+        res.redirect('/');
+    }
+});
+
+//role lisamine
+app.post('/filmid', (req, res) => {
+    if (req.body.roleSubmit) {
+        const roleName = req.body.roleName;
+        console.log(`Lisatud roll: ${roleName}`);
+        res.redirect('/');
+    }
+}); */
+
+
+
+
+
+//News
+app.post('/news/add', (req, res)=>{
+	if(!req.body.titleInput || !req.body.contentInput || !req.body.expireInput){
+		console.log('Uudisega jama');
+		notice = 'Andmeid puudu!';
+		res.render('addnews', {notice: notice});
+	} 
+	else { 
+		let sql = 'INSERT INTO vp2news (news_title, news_text, expire_date, user_id) VALUES(?,?,?,?)';
+		//t userid = 1;
+		//andmebaasi ühendus pool'i kaudu
+				//andmebaasi osa
+			conn.execute(sql, [req.body.titleInput, req.body.contentInput, req.body.expireInput, req.session.userId], (err, result)=>{
+				if(err) {
+					throw err;
+					notice = 'Uudise salvestamine ebaõnnestus!';
+					res.render('addnews', {notice: notice});
+				} else {
+					notice = 'Uudis edukalt salvestatud!';
+					res.render('addnews', {notice: notice});
+				}
+			});
+			//andmebaasi osa lõppeb
+		}
+});
